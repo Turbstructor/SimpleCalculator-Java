@@ -3,12 +3,31 @@
  */
 package fun.turbstructor.workshop;
 
+import fun.turbstructor.workshop.interactor.Inserter;
+import fun.turbstructor.workshop.operator.Processor;
+
 public class App {
-    public String getGreeting() {
-        return "Hello World!";
+    public static void main(String[] args) {
+        App app = new App();
+        app.run(args);
     }
 
-    public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+    private void run(String[] args)
+    {
+        Integer[] operand = new Integer[2];
+        Integer operator = null;
+
+        Inserter inserter = new Inserter();
+        Processor processor = new Processor();
+
+        for(int i = 0; i < 2; i ++)
+        {
+            System.out.printf("Operand #%d: ", (i + 1));
+            operand[i] = inserter.getOperand();
+        }
+        System.out.println();
+        operator = inserter.getOperator();
+        
+        processor.getResult(operand, operator);
     }
 }
